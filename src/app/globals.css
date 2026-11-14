@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+/* Theme variants. Dark is the default; the inline script in layout.tsx sets
+   data-theme on <html> from the saved choice or the OS preference. */
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+@custom-variant dark (&:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *));
+
+/* ───────────────────────── NextGen design tokens ───────────────────────── */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-sora), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Surfaces (deep navy → charcoal) */
+  --color-ink-950: #04060d;
+  --color-ink-900: #070b18;
+  --color-ink-850: #0a1022;
+  --color-ink-800: #0e152c;
+  --color-ink-700: #151e3a;
+  --color-ink-600: #222c4d;
+
+  /* Text */
+  --color-fg: #f4f6ff;
+  --color-fg-muted: #a3acc7;
+  --color-fg-subtle: #6f7896;
+
+  /* Brand accents */
+  --color-electric: #3d7bff;
+  --color-electric-soft: #6b9bff;
+  --color-violet: #6d5bff;
+  --color-lilac: #b49cff;
+  --color-signal: #3ddcc4;
+
+  /* Theme-aware helpers. `white` is the high-contrast ink of the current
+     theme (white on dark, deep navy on light); `snow` is always white, for
+     text on electric/violet fills. */
+  --color-white: #fff;
+  --color-snow: #fff;
+  --color-danger: #ff8a8a;
+
+  --radius-card: 1.25rem;
+
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-float-slow: float 12s ease-in-out infinite;
+  --animate-shine: shine 6s linear infinite;
+  --animate-spin-slow: spin 40s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -14px, 0); }
+  }
+  @keyframes marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-100%, 0, 0); }
+  }
+  @keyframes shine {
+    from { background-position: 0% 50%; }
+    to { background-position: 200% 50%; }
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --header-h: 4.5rem;
+    /* Drop-shadow ink for screenshots, frames and cards */
+    --shade: rgb(0 0 0 / 0.8);
+    --shade-soft: rgb(0 0 0 / 0.55);
+    --hairline: rgb(255 255 255 / 0.035);
+    --gradient-text: linear-gradient(100deg, #8fb2ff 0%, var(--color-electric) 30%, var(--color-violet) 62%, var(--color-lilac) 100%);
+    /* Periodic version (starts and ends on the same colour) so the shine loops without a seam */
+    --gradient-text-loop: linear-gradient(100deg, #8fb2ff 0%, var(--color-electric) 22%, var(--color-violet) 50%, var(--color-electric) 78%, #8fb2ff 100%);
+  }
+
+  /* ───────────── Light theme: same brand, inverted surfaces ───────────── */
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --color-ink-950: #e9edf7;
+    --color-ink-900: #f6f8fc;
+    --color-ink-850: #ffffff;
+    --color-ink-800: #eef2fa;
+    --color-ink-700: #dfe5f2;
+    --color-ink-600: #c9d1e4;
+
+    --color-fg: #0a1022;
+    --color-fg-muted: #48526e;
+    --color-fg-subtle: #656f8c;
+
+    --color-white: #0a1022;
+    --color-electric-soft: #2a5fe0;
+    --color-lilac: #7a5af0;
+    --color-signal: #0d9a85;
+    --color-danger: #c62f2f;
+
+    --shade: rgb(22 32 72 / 0.22);
+    --shade-soft: rgb(22 32 72 / 0.14);
+    --hairline: rgb(10 16 34 / 0.05);
+    --gradient-text: linear-gradient(100deg, #2a5fe0 0%, #3d63f5 30%, #5b4bf0 62%, #8a5cf6 100%);
+    --gradient-text-loop: linear-gradient(100deg, #2a5fe0 0%, #4a55f2 25%, #7b4ff0 50%, #4a55f2 75%, #2a5fe0 100%);
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-h);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-ink-900);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--color-violet) 55%, transparent);
+    color: white;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-electric-soft);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) { .container-x { padding-inline: 2rem; } }
+
+  .text-gradient {
+    background: var(--gradient-text);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-animated {
+    background-image: var(--gradient-text-loop);
+    animation: var(--animate-shine);
+  }
+
+  .glass {
+    background: linear-gradient(180deg, color-mix(in oklab, var(--color-white) 6%, transparent), color-mix(in oklab, var(--color-white) 2%, transparent));
+    border: 1px solid color-mix(in oklab, var(--color-white) 8%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+  }
+
+  /* Gradient hairline border for premium cards */
+  .ring-gradient {
+    position: relative;
+    isolation: isolate;
+  }
+  .ring-gradient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(140deg, rgb(107 155 255 / 0.55), rgb(109 91 255 / 0.15) 40%, rgb(255 255 255 / 0.04) 70%, rgb(180 156 255 / 0.4));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-electric-soft);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--hairline) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  }
+
+  [data-theme="light"] .glass {
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.85), rgb(255 255 255 / 0.6));
+  }
+  [data-theme="light"] .ring-gradient::before {
+    background: linear-gradient(140deg, rgb(61 99 245 / 0.45), rgb(109 91 255 / 0.12) 40%, rgb(10 16 34 / 0.06) 70%, rgb(138 92 246 / 0.35));
+  }
+
+  .noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
