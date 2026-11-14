@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { validateContact } from "@/lib/contact";
+import { renderEnquiryEmail } from "@/lib/email/enquiry";
 
 /**
  * Contact form endpoint. Delivery, in order of preference:
@@ -67,8 +68,6 @@ function webhookUrl() {
   return null;
 }
 
-const escapeHtml = (v: string) => v.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
-
 async function sendEmail(cfg: NonNullable<ReturnType<typeof smtpConfig>>, d: Submission): Promise<Result> {
   const nodemailer = await import("nodemailer");
   const transport = nodemailer.createTransport({
@@ -80,23 +79,13 @@ async function sendEmail(cfg: NonNullable<ReturnType<typeof smtpConfig>>, d: Sub
     greetingTimeout: 10_000,
     socketTimeout: 15_000,
   });
-  const rows: [string, string][] = [
-    ["Name", d.name],
-    ["Email", d.email],
-    ["Company", d.company || "—"],
-    ["Project type", d.projectType],
-    ["Submitted", d.submittedAt],
-  ];
-  const text = `${rows.map(([k, v]) => `${k}: ${v}`).join("\n")}\n\n${d.message}`;
-  const html = `<table cellpadding="6" style="border-collapse:collapse;font:14px system-ui,sans-serif">${rows
-    .map(([k, v]) => `<tr><td style="color:#667;vertical-align:top">${k}</td><td><strong>${escapeHtml(v)}</strong></td></tr>`)
-    .join("")}</table><p style="font:14px/1.6 system-ui,sans-serif;white-space:pre-wrap">${escapeHtml(d.message)}</p>`;
+  const { subject, html, text } = renderEnquiryEmail(d);
 
   await transport.sendMail({
     from: cfg.from,
     to: cfg.to,
     replyTo: { name: d.name, address: d.email },
-    subject: `New enquiry: ${d.projectType} — ${d.name}`.replace(/[\r\n]+/g, " ").slice(0, 200),
+    subject,
     text,
     html,
   });
