@@ -64,7 +64,7 @@ export function ScreenViewer({
     >
       <div
         aria-hidden
-        className="absolute -inset-8 -z-10 rounded-[3rem] opacity-40 blur-3xl"
+        className="absolute -inset-8 -z-10 rounded-[3rem] opacity-40 lg:blur-3xl"
         style={{ background: `radial-gradient(closest-side, ${accent.from}, transparent), radial-gradient(closest-side at 80% 80%, ${accent.to}, transparent)` }}
       />
 

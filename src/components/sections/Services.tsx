@@ -133,8 +133,8 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
 function IconTile({ Icon }: { Icon: LucideIcon }) {
   return (
     <div className="relative h-14 w-14 [perspective:400px]">
-      <div className="absolute inset-0 translate-x-1.5 translate-y-1.5 rounded-2xl bg-gradient-to-br from-electric/50 to-violet/50 blur-md transition-all duration-500 group-hover:translate-x-2.5 group-hover:translate-y-2.5" />
-      <div className="relative flex h-full w-full items-center justify-center rounded-2xl border border-white/15 bg-gradient-to-br from-white/[0.14] to-white/[0.03] backdrop-blur transition-transform duration-500 group-hover:[transform:rotateX(12deg)_rotateY(-14deg)]">
+      <div className="absolute inset-0 translate-x-1.5 translate-y-1.5 rounded-2xl bg-gradient-to-br from-electric/50 to-violet/50 opacity-60 lg:opacity-100 lg:blur-md transition-transform duration-500 group-hover:translate-x-2.5 group-hover:translate-y-2.5" />
+      <div className="relative flex h-full w-full items-center justify-center rounded-2xl border border-white/15 bg-gradient-to-br from-white/[0.14] to-white/[0.03] lg:backdrop-blur transition-transform duration-500 group-hover:[transform:rotateX(12deg)_rotateY(-14deg)]">
         <Icon className="h-6 w-6 text-white" strokeWidth={1.6} aria-hidden />
       </div>
     </div>

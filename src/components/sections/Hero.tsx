@@ -11,14 +11,31 @@ import {
   type MotionValue,
 } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/primitives";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+/** Scroll parallax runs on the main thread and lags behind native scrolling on
+ *  touch devices (notably iOS Safari), so it is enabled for desktop pointers only. */
+const DESKTOP_QUERY = "(min-width: 1024px) and (hover: hover) and (pointer: fine)";
+function useDesktopMotion() {
+  return useSyncExternalStore(
+    (cb) => {
+      const mq = window.matchMedia(DESKTOP_QUERY);
+      mq.addEventListener("change", cb);
+      return () => mq.removeEventListener("change", cb);
+    },
+    () => window.matchMedia(DESKTOP_QUERY).matches,
+    () => false,
+  );
+}
+
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
+  const desktop = useDesktopMotion();
+  const parallax = !reduce && desktop;
 
   // Pointer-driven tilt
   const px = useMotionValue(0);
@@ -56,12 +73,12 @@ export function Hero() {
       <Backdrop />
 
       <div className="container-x grid items-center gap-14 lg:grid-cols-[1.02fr_1fr] lg:gap-8">
-        <motion.div style={reduce ? undefined : { y: copyY, opacity: copyOpacity }} className="relative z-10">
+        <motion.div style={parallax ? { y: copyY, opacity: copyOpacity } : undefined} className="relative z-10">
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] py-1 pr-4 pl-1 text-xs text-fg-muted backdrop-blur"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] py-1 pr-4 pl-1 text-xs text-fg-muted lg:backdrop-blur"
           >
             <span className="rounded-full bg-gradient-to-r from-electric to-violet px-2.5 py-0.5 text-[0.7rem] font-semibold text-snow">
               NextGen Technologies
@@ -138,10 +155,10 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          style={reduce ? undefined : { y: stageY, scale: stageScale }}
+          style={parallax ? { y: stageY, scale: stageScale } : undefined}
           className="relative mx-auto w-full max-w-[640px] lg:max-w-none"
         >
-          <Stage rx={rx} ry={ry} reduce={!!reduce} />
+          <Stage rx={rx} ry={ry} reduce={!parallax} />
         </motion.div>
       </div>
     </section>
@@ -152,9 +169,9 @@ function Backdrop() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
       <div className="grid-bg absolute inset-0" />
-      <div className="absolute -top-40 left-1/2 h-[46rem] w-[46rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(61,123,255,0.22),transparent_62%)] blur-2xl" />
-      <div className="absolute top-1/3 -right-40 h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,rgba(109,91,255,0.25),transparent_60%)] blur-2xl" />
-      <div className="absolute -bottom-40 -left-40 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(61,220,196,0.08),transparent_60%)] blur-2xl" />
+      <div className="absolute -top-40 left-1/2 h-[46rem] w-[46rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(61,123,255,0.22),transparent_62%)] lg:blur-2xl" />
+      <div className="absolute top-1/3 -right-40 h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,rgba(109,91,255,0.25),transparent_60%)] lg:blur-2xl" />
+      <div className="absolute -bottom-40 -left-40 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(61,220,196,0.08),transparent_60%)] lg:blur-2xl" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-ink-900" />
     </div>
   );
@@ -172,7 +189,7 @@ function Stage({ rx, ry, reduce }: { rx: MotionValue<number>; ry: MotionValue<nu
     <div className="relative aspect-[1/0.92] w-full [perspective:1800px] sm:aspect-[1/0.82]">
       {/* Orbit rings */}
       <div aria-hidden className="absolute inset-[6%] rounded-full border border-white/[0.06]" />
-      <div aria-hidden className="animate-spin-slow absolute inset-[-4%] rounded-full border border-dashed border-white/[0.06]">
+      <div aria-hidden className="absolute lg:animate-spin-slow inset-[-4%] rounded-full border border-dashed border-white/[0.06]">
         <span className="absolute top-1/2 -left-1 h-2 w-2 rounded-full bg-electric-soft shadow-[0_0_14px_4px_rgba(107,155,255,0.6)]" />
         <span className="absolute -top-1 left-1/2 h-1.5 w-1.5 rounded-full bg-lilac shadow-[0_0_12px_3px_rgba(180,156,255,0.6)]" />
       </div>
@@ -183,7 +200,7 @@ function Stage({ rx, ry, reduce }: { rx: MotionValue<number>; ry: MotionValue<nu
       >
         {/* Back: Flowza lobby display */}
         <motion.div {...enter(0.5, -110)} className="absolute top-[2%] right-[0%] w-[58%] [transform-style:preserve-3d]">
-          <div className="animate-float-slow">
+          <div className="lg:animate-float-slow">
             <Tag className="-top-3 right-4">Flowza · Lobby display</Tag>
             <div className="overflow-hidden rounded-xl border border-white/10 shadow-[0_30px_60px_-20px_var(--shade)]">
               <Image src="/products/flowza/display.jpg" alt="" width={1460} height={680} sizes="(min-width:1024px) 22vw, 50vw" className="h-auto w-full" />
@@ -193,7 +210,7 @@ function Stage({ rx, ry, reduce }: { rx: MotionValue<number>; ry: MotionValue<nu
 
         {/* Center: Autonexa dashboard in browser */}
         <motion.div {...enter(0.25, 0)} className="absolute top-[24%] left-[6%] w-[78%] [transform-style:preserve-3d]">
-          <div className="animate-float">
+          <div className="lg:animate-float">
             <Tag className="-top-3 left-4">Autonexa · Dashboard</Tag>
             <div className="ring-gradient overflow-hidden rounded-xl bg-ink-850 shadow-[0_40px_90px_-20px_var(--shade)]">
               <div className="flex h-6 items-center gap-1 border-b border-white/[0.07] bg-ink-800 px-2.5">
@@ -216,7 +233,7 @@ function Stage({ rx, ry, reduce }: { rx: MotionValue<number>; ry: MotionValue<nu
 
         {/* Front-right: Flowza live queue */}
         <motion.div {...enter(0.75, 90)} className="absolute right-[-2%] bottom-[2%] w-[40%] [transform-style:preserve-3d]">
-          <div className="animate-float [animation-delay:-3s]">
+          <div className="lg:animate-float [animation-delay:-3s]">
             <Tag className="-top-3 left-3">Flowza · Live queue</Tag>
             <div className="overflow-hidden rounded-xl border border-white/15 shadow-[0_30px_70px_-15px_var(--shade)]">
               <Image src="/products/flowza/queue.jpg" alt="Flowza live queue" width={960} height={800} sizes="(min-width:1024px) 16vw, 40vw" className="h-auto w-full" />
@@ -226,7 +243,7 @@ function Stage({ rx, ry, reduce }: { rx: MotionValue<number>; ry: MotionValue<nu
 
         {/* Front-left: Autonexa mobile */}
         <motion.div {...enter(0.9, 150)} className="absolute bottom-[-4%] left-[-2%] w-[22%] [transform-style:preserve-3d]">
-          <div className="animate-float-slow [animation-delay:-5s]">
+          <div className="lg:animate-float-slow [animation-delay:-5s]">
             <div className="rounded-[1.1rem] border border-white/20 bg-[#04060d] p-1 shadow-[0_30px_60px_-10px_var(--shade)]">
               <div className="overflow-hidden rounded-[0.9rem]">
                 <Image src="/products/autonexa/dashboard-phone.webp" alt="Autonexa mobile app" width={780} height={1688} sizes="140px" className="h-auto w-full" />
@@ -270,7 +287,7 @@ function Stage({ rx, ry, reduce }: { rx: MotionValue<number>; ry: MotionValue<nu
 function Tag({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <span
-      className={`absolute z-10 rounded-full border border-white/15 bg-ink-900/85 px-2.5 py-0.5 text-[0.62rem] font-medium whitespace-nowrap text-fg backdrop-blur ${className}`}
+      className={`absolute z-10 rounded-full border border-white/15 bg-ink-900/90 px-2.5 py-0.5 text-[0.62rem] font-medium whitespace-nowrap text-fg lg:backdrop-blur ${className}`}
     >
       {children}
     </span>

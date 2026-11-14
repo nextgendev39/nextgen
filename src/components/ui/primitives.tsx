@@ -16,12 +16,12 @@ type ButtonProps = {
 } & Omit<ComponentProps<"a">, "href">;
 
 const base =
-  "group relative inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-300 will-change-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric-soft focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900";
+  "group relative inline-flex items-center justify-center gap-2 rounded-full font-medium transition-[transform,box-shadow,background-color,border-color,color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric-soft focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900";
 const variants = {
   primary:
     "bg-gradient-to-r from-electric via-violet to-[#8f6bff] text-snow shadow-[0_10px_40px_-10px_rgba(77,107,255,0.7)] hover:shadow-[0_14px_50px_-8px_rgba(109,91,255,0.85)] hover:-translate-y-0.5",
   outline:
-    "border border-white/15 bg-white/[0.03] text-fg backdrop-blur hover:border-white/30 hover:bg-white/[0.07] hover:-translate-y-0.5",
+    "border border-white/15 bg-white/[0.03] text-fg lg:backdrop-blur hover:border-white/30 hover:bg-white/[0.07] hover:-translate-y-0.5",
   ghost: "text-fg-muted hover:text-fg",
 };
 const sizes = { md: "h-11 px-5 text-sm", lg: "h-13 px-7 text-[0.95rem]" };

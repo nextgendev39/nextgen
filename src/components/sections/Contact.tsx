@@ -17,8 +17,8 @@ export function Contact() {
       <div className="container-x">
         <div className="noise relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-ink-850">
           <div aria-hidden className="pointer-events-none absolute inset-0">
-            <div className="absolute -top-40 -left-20 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(61,123,255,0.28),transparent_60%)] blur-2xl" />
-            <div className="absolute -right-32 -bottom-40 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(109,91,255,0.26),transparent_60%)] blur-2xl" />
+            <div className="absolute -top-40 -left-20 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(61,123,255,0.28),transparent_60%)] lg:blur-2xl" />
+            <div className="absolute -right-32 -bottom-40 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(109,91,255,0.26),transparent_60%)] lg:blur-2xl" />
             <div className="grid-bg absolute inset-0 opacity-70" />
           </div>
 

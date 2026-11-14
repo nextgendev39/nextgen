@@ -53,7 +53,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div className="grid-bg absolute inset-0" />
           <div
-            className="absolute -top-56 left-1/2 h-[44rem] w-[60rem] -translate-x-1/2 rounded-full opacity-25 blur-3xl"
+            className="absolute -top-56 left-1/2 h-[44rem] w-[60rem] -translate-x-1/2 rounded-full opacity-25 lg:blur-3xl"
             style={{ background: `radial-gradient(closest-side, ${p.accent.from}, transparent)` }}
           />
         </div>

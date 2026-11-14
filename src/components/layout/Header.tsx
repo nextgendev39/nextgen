@@ -61,8 +61,8 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled || open ? "border-b border-white/[0.06] bg-ink-900/75 backdrop-blur-xl" : "border-b border-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-500 ${
+        scrolled || open ? "border-b border-white/[0.06] bg-ink-900/95 lg:bg-ink-900/75 lg:backdrop-blur-xl" : "border-b border-transparent"
       }`}
     >
       <a

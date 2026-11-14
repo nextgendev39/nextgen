@@ -55,7 +55,7 @@ function ProductCard({ product: p }: { product: Product }) {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full opacity-20 blur-3xl transition-opacity duration-700 group-hover:opacity-40"
+        className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full opacity-20 lg:blur-3xl transition-opacity duration-700 group-hover:opacity-40"
         style={{ background: `radial-gradient(closest-side, ${p.accent.from}, transparent)` }}
       />
 

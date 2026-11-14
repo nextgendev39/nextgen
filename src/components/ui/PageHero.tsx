@@ -18,8 +18,8 @@ export function PageHero({
     <section className="relative overflow-hidden pt-[calc(var(--header-h)+3.5rem)] pb-14 sm:pb-20">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="grid-bg absolute inset-0" />
-        <div className="absolute -top-56 left-1/2 h-[40rem] w-[56rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(61,123,255,0.22),transparent)] blur-2xl" />
-        <div className="absolute top-10 -right-40 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(closest-side,rgba(109,91,255,0.2),transparent)] blur-2xl" />
+        <div className="absolute -top-56 left-1/2 h-[40rem] w-[56rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(61,123,255,0.22),transparent)] lg:blur-2xl" />
+        <div className="absolute top-10 -right-40 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(closest-side,rgba(109,91,255,0.2),transparent)] lg:blur-2xl" />
       </div>
       <div className="container-x">
         <Link href="/" className="inline-flex items-center gap-2 text-sm text-fg-muted hover:text-white">

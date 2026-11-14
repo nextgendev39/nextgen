@@ -86,7 +86,7 @@ function ProductCard({ product: p, index }: { product: Product; index: number })
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full opacity-20 blur-3xl transition-opacity duration-700 group-hover:opacity-35"
+        className="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full opacity-20 lg:blur-3xl transition-opacity duration-700 group-hover:opacity-35"
         style={{ background: `radial-gradient(closest-side, ${p.accent.from}, transparent)` }}
       />
       <div className="relative grid gap-10 p-6 sm:p-10 lg:grid-cols-12 lg:gap-12 lg:p-12">
