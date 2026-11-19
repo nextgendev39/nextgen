@@ -78,12 +78,15 @@ export function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] py-1 pr-4 pl-1 text-xs text-fg-muted lg:backdrop-blur"
+            className="flex flex-col items-start gap-2.5 text-xs text-fg-muted sm:inline-flex sm:flex-row sm:items-center sm:gap-2 sm:rounded-full sm:border sm:border-white/10 sm:bg-white/[0.04] sm:py-1 sm:pr-4 sm:pl-1 lg:backdrop-blur"
           >
-            <span className="rounded-full bg-gradient-to-r from-electric to-violet px-2.5 py-0.5 text-[0.7rem] font-semibold text-snow">
+            <span className="rounded-full bg-gradient-to-r from-electric to-violet px-3 py-1 text-[0.72rem] font-semibold whitespace-nowrap text-snow shadow-[0_6px_20px_-6px_rgba(109,91,255,0.6)] sm:px-2.5 sm:py-0.5 sm:text-[0.7rem] sm:shadow-none">
               Celestiq Technologies
             </span>
-            Software development &amp; product company
+            <span className="flex items-center gap-2 tracking-wide whitespace-nowrap sm:tracking-normal">
+              <span aria-hidden className="h-px w-5 bg-gradient-to-r from-electric to-violet sm:hidden" />
+              Software development &amp; product company
+            </span>
           </motion.p>
 
           <h1 id="hero-title" className="mt-7 text-[2.55rem] leading-[1.03] font-semibold sm:text-6xl lg:text-[4.1rem]">

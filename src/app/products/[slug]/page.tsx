@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { DeviceHeroShots } from "@/components/ui/ProjectShowcase";
 import { ArrowRight, ArrowUpRight, Boxes, Check, Layers, Stethoscope } from "lucide-react";
 import { BrowserFrame, Chip, PhoneFrame } from "@/components/ui/primitives";
 import { ProductLogo, TagList } from "@/components/ui/Portfolio";
@@ -37,7 +38,9 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
   const { slug } = await params;
   const p = products.find((x) => x.slug === slug);
   if (!p) notFound();
-  const [lead, ...rest] = p.media;
+  const [lead, ...others_] = p.media;
+  // With a website showcase as the hero, every app screen goes in the gallery
+  const rest = p.showcase ? p.media : others_;
   const others = products.filter((x) => x.slug !== p.slug);
   const related = services.filter((s) => p.relatedServices.includes(s.slug));
   const crumbs = crumbsFor(p);
@@ -94,7 +97,9 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           </div>
 
           <Reveal delay={0.15} className="mt-14">
-            {lead.frame === "raw" ? (
+            {p.showcase ? (
+              <DeviceHeroShots desktop={p.showcase.desktop} mobile={p.showcase.mobile} website={p.website} />
+            ) : lead.frame === "raw" ? (
               <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#fbf3ea] p-3 sm:p-6">
                 <Image src={lead.src} alt={lead.alt} width={lead.width} height={lead.height} priority sizes="100vw" className="mx-auto h-auto w-full max-w-4xl" />
               </div>
