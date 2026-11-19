@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Reveal } from "./Reveal";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import type { Crumb } from "@/lib/schema";
 
 /** Header block for inner listing pages. */
 export function PageHero({
@@ -8,11 +10,17 @@ export function PageHero({
   title,
   intro,
   count,
+  crumbs,
+  children,
 }: {
   eyebrow: string;
   title: React.ReactNode;
   intro: string;
-  count: string;
+  count?: string;
+  /** Breadcrumb trail shown instead of the "Home" back link */
+  crumbs?: Crumb[];
+  /** Extra content under the intro (e.g. calls to action) */
+  children?: React.ReactNode;
 }) {
   return (
     <section className="relative overflow-hidden pt-[calc(var(--header-h)+3.5rem)] pb-14 sm:pb-20">
@@ -22,9 +30,13 @@ export function PageHero({
         <div className="absolute top-10 -right-40 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(closest-side,rgba(109,91,255,0.2),transparent)] lg:blur-2xl" />
       </div>
       <div className="container-x">
-        <Link href="/" className="inline-flex items-center gap-2 text-sm text-fg-muted hover:text-white">
-          <ArrowLeft className="h-4 w-4" aria-hidden /> Home
-        </Link>
+        {crumbs ? (
+          <Breadcrumbs crumbs={crumbs} />
+        ) : (
+          <Link href="/" className="inline-flex items-center gap-2 text-sm text-fg-muted hover:text-white">
+            <ArrowLeft className="h-4 w-4" aria-hidden /> Home
+          </Link>
+        )}
         <Reveal className="mt-10 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <div className="max-w-3xl">
             <p className="eyebrow">
@@ -33,8 +45,9 @@ export function PageHero({
             </p>
             <h1 className="mt-4 text-[2.6rem] leading-[1.04] font-semibold sm:text-6xl">{title}</h1>
             <p className="mt-6 text-lg leading-relaxed text-fg-muted">{intro}</p>
+            {children}
           </div>
-          <p className="font-display text-sm tracking-wide text-fg-subtle">{count}</p>
+          {count ? <p className="font-display text-sm tracking-wide text-fg-subtle">{count}</p> : null}
         </Reveal>
       </div>
     </section>

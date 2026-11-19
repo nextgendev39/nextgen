@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Boxes } from "lucide-react";
@@ -8,32 +7,25 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/JsonLd";
 import { products, type Product } from "@/lib/content";
-import { site } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
+import { pageSchema, productList, type Crumb } from "@/lib/schema";
 
-export const metadata: Metadata = {
-  title: "Products",
+const seo = {
+  title: "SaaS Products by Celestiq: Autonexa, Flowza, BuildPilot",
   description:
-    "Software products built, owned and operated by Celestiq Technologies — Autonexa for automotive businesses, Flowza for queue management and BuildPilot for construction teams.",
-  alternates: { canonical: "/products" },
-  openGraph: { title: `Products · ${site.name}`, url: "/products" },
+    "Explore the SaaS platforms Celestiq Technologies builds and runs: Autonexa for car dealers, Flowza for queue management and BuildPilot for construction.",
 };
+const crumbs: Crumb[] = [
+  { name: "Home", path: "/" },
+  { name: "Products", path: "/products" },
+];
+
+export const metadata = pageMetadata({ ...seo, path: "/products" });
 
 export default function ProductsPage() {
   return (
     <>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: `${site.name} products`,
-          itemListElement: products.map((p, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            url: `${site.url}/products/${p.slug}`,
-            name: p.name,
-          })),
-        }}
-      />
+      <JsonLd data={pageSchema({ type: "CollectionPage", path: "/products", ...seo, crumbs, itemList: productList() })} />
 
       <PageHero
         eyebrow="Our products"
@@ -44,6 +36,7 @@ export default function ProductsPage() {
         }
         intro="Celestiq Technologies designs, engineers and operates its own SaaS platforms. Each one solves a real operational problem for a specific industry."
         count={`${String(products.length).padStart(2, "0")} products`}
+        crumbs={crumbs}
       />
 
       <section aria-label="All products" className="pb-24 sm:pb-32">
@@ -62,7 +55,7 @@ export default function ProductsPage() {
               <p className="mt-2 text-fg-muted">We build custom platforms with the same team and standards.</p>
             </div>
             <Link
-              href="/#contact"
+              href="/contact"
               className="inline-flex h-12 shrink-0 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-ink-900 transition hover:-translate-y-0.5"
             >
               Let&apos;s talk <ArrowUpRight className="h-4 w-4" aria-hidden />

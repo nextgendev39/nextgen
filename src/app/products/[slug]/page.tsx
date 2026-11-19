@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, Boxes, Check, Layers, Stethoscope } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Boxes, Check, Layers, Stethoscope } from "lucide-react";
 import { BrowserFrame, Chip, PhoneFrame } from "@/components/ui/primitives";
 import { ProductLogo, TagList } from "@/components/ui/Portfolio";
-import { site } from "@/lib/site";
 import { Reveal } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/JsonLd";
-import { products } from "@/lib/content";
-import { productSchema } from "@/lib/schema";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { products, services } from "@/lib/content";
+import { productSchema, type Crumb } from "@/lib/schema";
+import { pageMetadata } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -19,23 +20,17 @@ export function generateStaticParams(): Params[] {
 
 export const dynamicParams = false;
 
+const crumbsFor = (p: { name: string; slug: string }): Crumb[] => [
+  { name: "Home", path: "/" },
+  { name: "Products", path: "/products" },
+  { name: p.name, path: `/products/${p.slug}` },
+];
+
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
   const p = products.find((x) => x.slug === slug);
   if (!p) return {};
-  const title = `${p.name} — ${p.category}`;
-  return {
-    title,
-    description: p.description,
-    alternates: { canonical: `/products/${p.slug}` },
-    openGraph: {
-      title: `${title} · ${site.name}`,
-      description: p.description,
-      url: `/products/${p.slug}`,
-      images: [{ url: p.media[0].src, width: p.media[0].width, height: p.media[0].height, alt: p.media[0].alt }],
-    },
-    twitter: { card: "summary_large_image", title: `${title} · ${site.name}`, description: p.description, images: [p.media[0].src] },
-  };
+  return pageMetadata({ ...p.seo, path: `/products/${p.slug}` });
 }
 
 export default async function ProductPage({ params }: { params: Promise<Params> }) {
@@ -44,10 +39,12 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
   if (!p) notFound();
   const [lead, ...rest] = p.media;
   const others = products.filter((x) => x.slug !== p.slug);
+  const related = services.filter((s) => p.relatedServices.includes(s.slug));
+  const crumbs = crumbsFor(p);
 
   return (
     <>
-      <JsonLd data={productSchema(p.slug)!} />
+      <JsonLd data={productSchema(p, crumbs)} />
 
       <section className="relative overflow-hidden pt-[calc(var(--header-h)+3.5rem)] pb-16 sm:pb-24">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
@@ -59,9 +56,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
         </div>
 
         <div className="container-x">
-          <Link href="/products" className="inline-flex items-center gap-2 text-sm text-fg-muted hover:text-white">
-            <ArrowLeft className="h-4 w-4" aria-hidden /> All products
-          </Link>
+          <Breadcrumbs crumbs={crumbs} />
 
           <div className="mt-10 grid items-end gap-10 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
@@ -175,6 +170,32 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
         </div>
       </section>
 
+      {related.length ? (
+        <section aria-labelledby="built-with-title" className="pb-4">
+          <div className="container-x">
+            <h2 id="built-with-title" className="text-2xl font-semibold sm:text-3xl">
+              Built by Celestiq Technologies
+            </h2>
+            <p className="mt-3 max-w-2xl text-fg-muted">
+              {p.name} is designed, engineered and operated by our team. The same services are available for your own product.
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-3">
+              {related.map((s) => (
+                <li key={s.slug}>
+                  <Link
+                    href={`/services/${s.slug}`}
+                    className="group inline-flex h-11 items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 text-sm font-medium text-fg transition hover:border-white/30"
+                  >
+                    {s.title}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
+
       <section className="py-20">
         <div className="container-x">
           <div className="ring-gradient flex flex-col items-start gap-8 rounded-[2rem] bg-ink-850 p-8 sm:p-12 lg:flex-row lg:items-center lg:justify-between">
@@ -184,7 +205,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
             </div>
             <div className="flex flex-wrap gap-3">
               <Link
-                href="/#contact"
+                href="/contact"
                 className="inline-flex h-12 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-ink-900 transition hover:-translate-y-0.5"
               >
                 Talk to us <ArrowUpRight className="h-4 w-4" aria-hidden />

@@ -72,7 +72,7 @@ export function Header() {
         Skip to content
       </a>
       <div className="container-x flex h-[var(--header-h)] items-center justify-between gap-6">
-        <Link href="/#home" aria-label="Celestiq Technologies — home" className="shrink-0" onClick={() => setOpen(false)}>
+        <Link href="/" aria-label="Celestiq Technologies — home" className="shrink-0" onClick={() => setOpen(false)}>
           <Logo animate="mount" />
         </Link>
 
@@ -108,7 +108,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <Link
-            href="/#contact"
+            href="/contact"
             className="group hidden items-center gap-1.5 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink-900 shadow-[0_8px_30px_-8px_rgba(109,91,255,0.6)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_36px_-6px_rgba(109,91,255,0.95)] sm:inline-flex"
           >
             Let&apos;s Talk
@@ -162,7 +162,7 @@ export function Header() {
               ))}
               <li className="pt-6">
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   onClick={() => setOpen(false)}
                   className="flex h-13 items-center justify-center rounded-full bg-gradient-to-r from-electric to-violet font-semibold text-snow"
                 >

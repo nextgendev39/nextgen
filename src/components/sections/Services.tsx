@@ -1,21 +1,14 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { AppWindow, ArrowUpRight, Check, Globe, PenTool, Plus, RefreshCcw, Smartphone, Webhook, type LucideIcon } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, Check, Plus, type LucideIcon } from "lucide-react";
 import { useState } from "react";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { Stagger, staggerItem } from "@/components/ui/Reveal";
-import { services, type Service, type ServiceIcon } from "@/lib/content";
+import { services, type Service } from "@/lib/content";
+import { serviceIcons } from "@/components/ui/serviceIcons";
 import { selectProjectType } from "@/lib/events";
-
-const icons: Record<ServiceIcon, LucideIcon> = {
-  web: Globe,
-  design: PenTool,
-  app: AppWindow,
-  api: Webhook,
-  mobile: Smartphone,
-  modernize: RefreshCcw,
-};
 
 export function Services() {
   return (
@@ -49,7 +42,7 @@ export function Services() {
 
 function ServiceCard({ service, index }: { service: Service; index: number }) {
   const [open, setOpen] = useState(false);
-  const Icon = icons[service.icon];
+  const Icon = serviceIcons[service.icon];
   const panelId = `svc-${service.slug}`;
 
   const onMove = (e: React.PointerEvent<HTMLElement>) => {
@@ -99,13 +92,21 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
                 </li>
               ))}
             </ul>
-            <a
-              href="#contact"
-              onClick={() => selectProjectType(service.title)}
-              className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-electric-soft hover:text-white"
-            >
-              Discuss this service <ArrowUpRight className="h-4 w-4" aria-hidden />
-            </a>
+            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+              <Link
+                href={`/services/${service.slug}`}
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-electric-soft"
+              >
+                Explore {service.title} <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <a
+                href="#contact"
+                onClick={() => selectProjectType(service.title)}
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-electric-soft hover:text-white"
+              >
+                Discuss this service <ArrowUpRight className="h-4 w-4" aria-hidden />
+              </a>
+            </div>
           </motion.div>
         ) : null}
       </AnimatePresence>
