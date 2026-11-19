@@ -20,7 +20,7 @@ export const site = {
   description:
     "Celestiq Technologies is a software development and product company. We design and build websites, web and mobile applications and APIs for clients, and run our own SaaS products: Autonexa, Flowza and BuildPilot.",
   /** Canonical origin. Override with NEXT_PUBLIC_SITE_URL for previews. */
-  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://celestiqtech.com").replace(/\/$/, ""),
+  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.celestiqtech.com").replace(/\/$/, ""),
   locale: "en_US",
   /**
    * Date the public content last changed meaningfully. Used as <lastmod> in
