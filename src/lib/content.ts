@@ -373,7 +373,7 @@ export const products: Product[] = [
     mark: { src: "/products/autonexa/mark-dark.png", width: 421, height: 256 },
     accent: { from: "#E5B85C", to: "#B9862F" },
     industries: ["Car showrooms", "Dealer groups", "Used-car traders"],
-    website: "https://autonexa-ten.vercel.app",
+    website: "https://autonexa.celestiqtech.com",
     showcase: {
       desktop: { src: "/products/autonexa/site-desktop.webp", width: 1920, height: 1200, label: "Website", alt: "Autonexa website on desktop: run your whole car dealership from one screen, with the sales dashboard below", frame: "desktop" },
       mobile: { src: "/products/autonexa/site-mobile.webp", width: 780, height: 1688, label: "Mobile", alt: "Autonexa website on a mobile phone", frame: "phone" },
@@ -416,7 +416,7 @@ export const products: Product[] = [
     mark: { src: "/products/flowza/flowza-mark.svg", width: 64, height: 64 },
     accent: { from: "#4C5BF5", to: "#19B8C9" },
     industries: ["Restaurants", "Clinics", "Hospitals", "Service businesses"],
-    website: "https://flowza-restaurant.vercel.app",
+    website: "https://flowza.celestiqtech.com",
     showcase: {
       desktop: { src: "/products/flowza/site-desktop.webp", width: 1920, height: 1200, label: "Website", alt: "Flowza website on desktop: One Platform. Every Queue. Better Experiences, with the live queue dashboard", frame: "desktop" },
       mobile: { src: "/products/flowza/site-mobile.webp", width: 780, height: 1688, label: "Mobile", alt: "Flowza website on a mobile phone", frame: "phone" },
@@ -465,7 +465,7 @@ export const products: Product[] = [
     mark: { src: "/products/buildpilot/mark.png", width: 512, height: 512 },
     accent: { from: "#F59E0B", to: "#EA580C" },
     industries: ["Civil engineers", "Contractors", "Site teams"],
-    website: "https://builtpilot-web.vercel.app",
+    website: "https://builtpilot.celestiqtech.com",
     showcase: {
       desktop: { src: "/products/buildpilot/site-desktop.webp", width: 1920, height: 1200, label: "Website", alt: "BuildPilot website on desktop: run every construction project with clarity", frame: "desktop" },
       mobile: { src: "/products/buildpilot/site-mobile.webp", width: 780, height: 1688, label: "Mobile", alt: "BuildPilot website on a mobile phone", frame: "phone" },
@@ -553,7 +553,7 @@ export const projects: Project[] = [
     ],
     services: ["Web Application Development", "Product UI/UX Design"],
     tech: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "Drizzle ORM", "Web Push"],
-    website: "https://autonexa-ten.vercel.app/",
+    website: "https://autonexa.celestiqtech.com",
     cover: {
       src: "/projects/zohaan-motors/desktop.webp",
       width: 1920,
