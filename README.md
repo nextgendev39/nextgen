@@ -61,16 +61,18 @@ electric/violet fills, and the `light:` / `dark:` variants for anything else.
 
 ## Content sources (all real)
 
-- **Autonexa** — screenshots from `autonexa/public/landing`, logo from `autonexa/public/brand`.
-- **Flowza** — cropped frames from `Flowza-Restaurant-App-Flow.mp4`; logo from `flowza-restaurant/public/brand`.
-  The video predates the current indigo Flowza logo, so its screens show the earlier orange styling.
-  Clinic features come from the codebase, which has no screenshots yet. To add some, drop images in
-  `public/products/flowza/` and append them to `media` in `src/lib/content.ts`.
+- **Autonexa** — screenshots from `autonexa/public/landing`, logo from `autonexa/public/brand`. Public URL: https://autonexa.celestiqtech.com.
+- **Flowza** — screenshots of the signed-in clinic dashboard (`app-*.webp`: dashboard, queue, appointments,
+  patients, doctors, availability, mobile queue); logo from `flowza-restaurant/public/brand`. The home hero
+  still uses two frames from `Flowza-Restaurant-App-Flow.mp4` (`queue.jpg`, `display.jpg`). Public URL:
+  https://flowza.celestiqtech.com.
+- Each product also has `site-desktop.webp` / `site-mobile.webp` captures of its public website, shown as the
+  browser + phone cover (`showcase` in `src/lib/content.ts`).
 - **BuildPilot** — captured from the BuildPilot app (`builtpilot-web`) running locally: home page, platform,
   AI section, sign-in and mobile. The app's own UI and README spell it "BuildPilot", so the site does too
   (`name` in `src/lib/content.ts`). Features come from its landing page, README and routes. The signed-in
   dashboard needs an account, so there are no in-app captures yet. Add them to `public/products/buildpilot/`
-  and to `media`. Public URL: https://builtpilot-web.vercel.app (from the repo's `lib/app-url.ts`).
+  and to `media`. Public URL: https://builtpilot.celestiqtech.com.
 
 
 ## SEO
