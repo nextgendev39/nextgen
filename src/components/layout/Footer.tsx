@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { FooterWordmark } from "./FooterWordmark";
-import { products, services } from "@/lib/content";
+import { products, projects, services } from "@/lib/content";
 import { site } from "@/lib/site";
 
 export function Footer() {
@@ -15,14 +15,14 @@ export function Footer() {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-40 h-80 bg-[radial-gradient(ellipse_at_center,rgba(109,91,255,0.18),transparent_65%)]" />
       <div className="container-x relative grid gap-12 md:grid-cols-12">
         <div className="md:col-span-4">
-          <Link href="/#home" className="inline-flex" aria-label="Celestiq Technologies — home">
+          <Link href="/" className="inline-flex" aria-label="Celestiq Technologies — home">
             <Logo />
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-fg-muted">
             {site.tagline} We design and engineer websites, applications and APIs for clients — and run our own platforms,{" "}
             {products.map((p) => p.name).join(", ").replace(/, ([^,]*)$/, " and $1")}.
           </p>
-          <Link href="/#contact" className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-electric-soft">
+          <Link href="/contact" className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-electric-soft">
             Start a project <ArrowUpRight className="h-4 w-4" aria-hidden />
           </Link>
         </div>
@@ -30,11 +30,16 @@ export function Footer() {
         <FooterCol title="Services" className="md:col-span-3">
           {services.map((s) => (
             <li key={s.slug}>
-              <Link href="/#services" className="hover:text-white">
+              <Link href={`/services/${s.slug}`} className="hover:text-white">
                 {s.title}
               </Link>
             </li>
           ))}
+          <li>
+            <Link href="/services" className="text-fg-subtle hover:text-white">
+              All services →
+            </Link>
+          </li>
         </FooterCol>
 
         <FooterCol title="Products" className="md:col-span-2">
@@ -77,7 +82,7 @@ export function Footer() {
             </>
           ) : (
             <li>
-              <Link href="/#contact" className="hover:text-white">
+              <Link href="/contact" className="hover:text-white">
                 Send us a message
               </Link>
             </li>
@@ -106,11 +111,22 @@ export function Footer() {
         <p>
           © {year} {site.legalName}. All rights reserved.
         </p>
-        <p>
+        <nav aria-label="Company" className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <Link href="/about" className="hover:text-white">
+            About
+          </Link>
+          <Link href="/contact" className="hover:text-white">
+            Contact
+          </Link>
+          {projects.length ? (
+            <Link href="/projects" className="hover:text-white">
+              Projects
+            </Link>
+          ) : null}
           <a href={site.url} className="hover:text-white">
             {new URL(site.url).host.replace(/^www\./, "")}
           </a>
-        </p>
+        </nav>
       </div>
     </footer>
   );

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { LIMITS, validateContact, type ContactErrors, type ContactPayload } from "@/lib/contact";
 import { projectTypes } from "@/lib/content";
 import { PROJECT_TYPE_EVENT } from "@/lib/events";
+import { trackEvent } from "@/lib/track";
 
 const empty: ContactPayload = { name: "", email: "", company: "", projectType: "", message: "", website: "" };
 type Status = "idle" | "submitting" | "success" | "error";
@@ -73,6 +74,7 @@ export function ContactForm() {
         return;
       }
       setStatus("success");
+      trackEvent("generate_lead", { project_type: values.projectType, page_path: window.location.pathname });
       setValues(empty);
       setTouched({});
     } catch {

@@ -5,48 +5,36 @@ import { Footer } from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/MotionProvider";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
-import { site } from "@/lib/site";
+import { indexable, integrations, site } from "@/lib/site";
+import { Analytics } from "@/components/Analytics";
+import { ScrollManager } from "@/components/ScrollManager";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const sora = Sora({ subsets: ["latin"], variable: "--font-sora", display: "swap", weight: ["400", "500", "600", "700"] });
 
-const defaultTitle = `${site.name} — ${site.tagline}`;
+const defaultTitle = `${site.name} | Software Development Company`;
 
+/**
+ * Site-wide defaults. Every route overrides title, description, canonical,
+ * Open Graph and robots through `pageMetadata()` in `@/lib/seo`.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: defaultTitle,
-    template: `%s · ${site.name}`,
+    template: `%s | ${site.shortName}`,
   },
   description: site.description,
   applicationName: site.name,
-  keywords: [
-    "Celestiq",
-    "Celestiq Technologies",
-    "software development company",
-    "web application development",
-    "website development",
-    "UI/UX design",
-    "API development",
-    "mobile app development",
-    "code modernization",
-    "SaaS",
-    "Autonexa",
-    "Flowza",
-    "BuildPilot",
-    "construction management software",
-    "queue management software",
-  ],
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   publisher: site.name,
-  alternates: { canonical: "/" },
+  category: "technology",
   openGraph: {
     type: "website",
     siteName: site.name,
     locale: site.locale,
-    url: "/",
     title: defaultTitle,
     description: site.description,
   },
@@ -55,8 +43,12 @@ export const metadata: Metadata = {
     title: defaultTitle,
     description: site.description,
   },
-  robots: { index: true, follow: true },
+  robots: indexable ? { index: true, follow: true } : { index: false, follow: false },
   formatDetection: { telephone: false },
+  verification: {
+    ...(integrations.googleSiteVerification ? { google: integrations.googleSiteVerification } : {}),
+    ...(integrations.bingSiteVerification ? { other: { "msvalidate.01": integrations.bingSiteVerification } } : {}),
+  },
 };
 
 export const viewport: Viewport = {
@@ -77,7 +69,7 @@ const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!==
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${sora.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
@@ -88,6 +80,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <main id="main">{children}</main>
           <Footer />
         </MotionProvider>
+        <ScrollManager />
+        <Analytics />
       </body>
     </html>
   );
