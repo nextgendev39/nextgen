@@ -106,7 +106,7 @@ export function ProductsMenu({ active }: { active: boolean }) {
         aria-controls={panelId}
         aria-current={active ? "true" : undefined}
         onClick={onButtonClick}
-        className={`relative flex items-center gap-1 rounded-full px-3.5 py-1.5 text-[0.85rem] transition-colors ${
+        className={`relative flex items-center gap-1 rounded-full px-2.5 py-1.5 text-[0.85rem] whitespace-nowrap transition-colors xl:px-3.5 ${
           active || open ? "text-white" : "text-fg-muted hover:text-white"
         }`}
       >

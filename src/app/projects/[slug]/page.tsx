@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
+import { ProjectHeroShots } from "@/components/ui/ProjectShowcase";
 import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
 import { CtaBanner } from "@/components/ui/CtaBanner";
@@ -55,7 +55,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
 
       {p.cover ? (
         <div className="container-x">
-          <Image src={p.cover.src} alt={p.cover.alt} width={p.cover.width} height={p.cover.height} priority sizes="(min-width: 1280px) 1200px, 100vw" className="h-auto w-full rounded-2xl border border-white/10" />
+          <ProjectHeroShots project={p} />
         </div>
       ) : null}
 

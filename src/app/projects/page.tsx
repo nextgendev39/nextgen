@@ -1,10 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight } from "lucide-react";
+import { ProjectsGrid } from "@/components/ui/ProjectsGrid";
 import { PageHero } from "@/components/ui/PageHero";
 import { CtaBanner } from "@/components/ui/CtaBanner";
-import { Chip } from "@/components/ui/primitives";
 import { JsonLd } from "@/components/JsonLd";
 import { projects } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
@@ -50,34 +47,7 @@ export default function ProjectsPage() {
         count={`${String(projects.length).padStart(2, "0")} projects`}
       />
       <section aria-label="All projects" className="pb-12">
-        <ul className="container-x grid gap-6 md:grid-cols-2">
-          {projects.map((p) => (
-            <li key={p.slug}>
-              <Link href={`/projects/${p.slug}`} className="group ring-gradient flex h-full flex-col overflow-hidden rounded-[2rem] bg-ink-850/70">
-                {p.cover ? (
-                  <div className="relative aspect-[16/10] overflow-hidden bg-ink-900">
-                    <Image src={p.cover.src} alt={p.cover.alt} fill sizes="(min-width: 768px) 45vw, 100vw" className="object-cover object-top" />
-                  </div>
-                ) : null}
-                <div className="flex flex-1 flex-col p-7">
-                  <p className="text-sm text-electric-soft">{p.industry}</p>
-                  <h2 className="mt-2 text-2xl font-semibold">{p.name}</h2>
-                  <p className="mt-3 text-fg-muted">{p.summary}</p>
-                  <ul className="mt-5 flex flex-wrap gap-2">
-                    {p.services.map((s) => (
-                      <li key={s}>
-                        <Chip>{s}</Chip>
-                      </li>
-                    ))}
-                  </ul>
-                  <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-white">
-                    Read the case study <ArrowRight className="h-4 w-4" aria-hidden />
-                  </span>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <ProjectsGrid projects={projects} />
       </section>
       <CtaBanner title="Have a similar project in mind?" text="Tell us what you are building and we'll get back to you to discuss scope and approach." />
     </>

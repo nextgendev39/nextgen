@@ -496,11 +496,16 @@ export const products: Product[] = [
  * While this list is empty, /projects returns 404 and is left out of the
  * sitemap and navigation, so no thin page is ever indexed.
  */
+export const projectCategories = ["Web App", "Website"] as const;
+export type ProjectCategory = (typeof projectCategories)[number];
+
 export type Project = {
   slug: string;
   name: string;
   client: string;
   industry: string;
+  /** What kind of build it was; drives the filter tabs on /projects */
+  category: ProjectCategory;
   /** One-sentence summary for cards and the meta description fallback */
   summary: string;
   /** Case-study body paragraphs */
@@ -509,11 +514,170 @@ export type Project = {
   tech: string[];
   /** Live URL, when public */
   website?: string;
+  /** Desktop screenshot (1920×1200) */
   cover?: Media;
+  /** Phone screenshot, shown overlapping the desktop cover */
+  mobile?: Media;
   seo: Seo;
 };
 
-export const projects: Project[] = [];
+export const projects: Project[] = [
+  {
+    slug: "zohaan-motors",
+    name: "Zohaan Motors",
+    client: "Zohaan Motors",
+    industry: "Automotive · Used-car showroom",
+    category: "Web App",
+    summary:
+      "An invite-only operations workspace for a UAE used-car showroom, tracking every vehicle from acquisition through inspection, workshop, pricing and booking.",
+    body: [
+      "Zohaan Motors runs a used-car showroom in the UAE. Each vehicle goes through acquisition, inspection, workshop repairs, pricing and finally a customer booking, and the team needed one place to follow it through every step.",
+      "We built a private staff workspace that follows each vehicle through its lifecycle, with controlled status changes. It covers acquisition and its financials, inspection checklists, workshop jobs with costs and quality checks, pricing, and bookings with payment terms. Push alerts warn staff before a booking's payment deadline passes.",
+      "Access is invite-only. A Super Admin invites each staff member, who verifies with an emailed code before setting a password. Role-based permissions decide what each person can see and change, and database row-level security enforces those same rules. The interface works in English and Arabic (right-to-left), with prices in AED and dates in Dubai time.",
+    ],
+    services: ["Web Application Development", "Product UI/UX Design"],
+    tech: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "Drizzle ORM", "Web Push"],
+    website: "https://autonexa-ten.vercel.app/",
+    cover: {
+      src: "/projects/zohaan-motors/desktop.webp",
+      width: 1920,
+      height: 1200,
+      label: "Desktop",
+      alt: "Car dealership software on desktop: run your whole car dealership from one screen, with a sales and bookings dashboard",
+      frame: "desktop",
+    },
+    mobile: {
+      src: "/projects/zohaan-motors/mobile.webp",
+      width: 780,
+      height: 1688,
+      label: "Mobile",
+      alt: "Car dealership software on a mobile phone",
+      frame: "phone",
+    },
+    seo: {
+      title: "Zohaan Motors | Used-Car Showroom Management System Case Study",
+      description:
+        "How Celestiq built Zohaan Motors' showroom workspace: vehicle acquisition, inspection, workshop, pricing and bookings with role-based access, in English and Arabic.",
+      keywords: ["car showroom management software", "used car dealer software UAE", "vehicle inventory system", "dealership management system"],
+    },
+  },
+  {
+    slug: "mirna",
+    name: "Mirna",
+    client: "Mirna",
+    industry: "Retail · Ecommerce",
+    category: "Web App",
+    summary:
+      "A UAE-first ecommerce platform with an admin app and a bilingual English/Arabic storefront, covering catalogue, variants, cart, checkout and Stripe payments.",
+    body: [
+      "Mirna is an online store built for the UAE first, with AED pricing and English and Arabic. It is designed so more countries, currencies and languages can be added later without a rewrite.",
+      "The platform is two applications that share one Supabase backend. Staff manage the store in the admin app: products, categories, tags, attributes, variants, stock, delivery, payments and contact details. Customers shop in the storefront, which has search, filters, product pages with size and colour options, a cart, a wishlist, saved addresses, checkout, verified-buyer reviews and order history.",
+      "Payments go through Stripe, with card and Apple Pay. Order placement runs in a single database transaction: prices are recalculated on the server, stock is reserved, and repeat submissions never create a second order. The storefront supports right-to-left Arabic, light and dark themes, works as an installable PWA, and includes structured data, hreflang tags and a sitemap for search engines.",
+    ],
+    services: ["Web Application Development", "Website Development", "API Development & Integrations"],
+    tech: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "Stripe", "Tailwind CSS"],
+    cover: {
+      src: "/projects/mirna/desktop.webp",
+      width: 1920,
+      height: 1200,
+      label: "Desktop",
+      alt: "Mirna storefront on desktop: The new collection hero with abaya photography, and the Women collection below",
+      frame: "desktop",
+    },
+    mobile: {
+      src: "/projects/mirna/mobile.webp",
+      width: 780,
+      height: 1688,
+      label: "Mobile",
+      alt: "Mirna storefront on a mobile phone",
+      frame: "phone",
+    },
+    seo: {
+      title: "Mirna | Bilingual Ecommerce Platform Case Study for the UAE",
+      description:
+        "How Celestiq built Mirna: an English/Arabic ecommerce storefront and admin for the UAE with variants, cart, checkout, Stripe and Apple Pay payments, and a PWA.",
+      keywords: ["ecommerce development UAE", "Arabic ecommerce website", "Next.js ecommerce", "Stripe Apple Pay integration"],
+    },
+  },
+  {
+    slug: "compass-trading",
+    name: "Compass Trading",
+    client: "Compass Trading LLC FZ",
+    industry: "Automotive · Vehicle export",
+    category: "Website",
+    summary:
+      "A fast, search-optimised marketing website for a Dubai vehicle exporter, built to turn visitors into WhatsApp, phone and email enquiries.",
+    body: [
+      "Compass Trading LLC FZ exports vehicles from the UAE. It needed a website that presents the business with confidence and makes it easy for buyers to get in touch.",
+      "We designed and built a single-page site with an interactive 3D hero, sections on the company, its services and why to choose it, a brand marquee and a gallery of exported vehicles. Enquiries go straight to the team: an enquiry form opens WhatsApp with the vehicle and destination already filled in, and there are click-to-call, email and floating WhatsApp buttons.",
+      "The site is built for search and speed. It includes metadata, Open Graph cards, a sitemap and JSON-LD structured data for the business, images served as AVIF and WebP, and a 3D scene and analytics that load only after the page is ready. Every WhatsApp, phone and email click is tracked through Google Tag Manager and GA4, so the team can count enquiries as conversions.",
+    ],
+    services: ["Website Development", "Product UI/UX Design"],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Google Tag Manager", "Google Analytics 4"],
+    website: "https://compasstradingllc.ae/",
+    cover: {
+      src: "/projects/compass-trading/desktop.webp",
+      width: 1920,
+      height: 1200,
+      label: "Desktop",
+      alt: "Compass Trading website on desktop: Your Trusted Car Export Company in the UAE, with WhatsApp and call buttons",
+      frame: "desktop",
+    },
+    mobile: {
+      src: "/projects/compass-trading/mobile.webp",
+      width: 780,
+      height: 1688,
+      label: "Mobile",
+      alt: "Compass Trading website on a mobile phone",
+      frame: "phone",
+    },
+    seo: {
+      title: "Compass Trading | Vehicle Export Website Case Study, Dubai",
+      description:
+        "How Celestiq built Compass Trading's vehicle export website: a fast, SEO-ready Next.js site with WhatsApp enquiries, conversion tracking and an interactive 3D hero.",
+      keywords: ["car export website Dubai", "automotive website development", "WhatsApp lead generation website", "Next.js business website"],
+    },
+  },
+  {
+    slug: "easy-fly-tourism",
+    name: "Easy Fly Tourism",
+    client: "Easy Fly Tourism",
+    industry: "Travel · Tourism & visas",
+    category: "Website",
+    summary:
+      "A website for a Dubai travel agency that presents its ticketing, UAE visa and visa-extension services and brings in enquiries by form, phone, email and WhatsApp.",
+    body: [
+      "Easy Fly Tourism is a travel agency in Deira, Dubai. It books flight tickets to destinations worldwide, processes 30-day and 60-day Dubai visas with single or multiple entry, and extends visas by up to 30 days for visitors already in the UAE.",
+      "We built a single-page website around those services. A full-screen \"Discover Your Destination\" hero leads into the agency's story, a clear breakdown of its three services, opening hours and the office address. The phone number and sales email sit at the top of every page.",
+      "The site is built to turn visitors into enquiries. A contact form sends messages straight to the sales inbox, an \"Enquire Now\" call to action appears throughout the page, and a floating WhatsApp button lets visitors start a chat. The layout adapts to phones, and sections animate in as the visitor scrolls.",
+    ],
+    services: ["Website Development"],
+    tech: ["HTML5", "CSS3", "Bootstrap 5", "jQuery", "EmailJS"],
+    website: "https://easyflytourism.com/",
+    cover: {
+      src: "/projects/easy-fly/desktop.webp",
+      width: 1920,
+      height: 1200,
+      label: "Desktop",
+      alt: "Easy Fly Tourism website on desktop: Discover Your Destination hero with world landmarks and a suitcase",
+      frame: "desktop",
+    },
+    mobile: {
+      src: "/projects/easy-fly/mobile.webp",
+      width: 780,
+      height: 1688,
+      label: "Mobile",
+      alt: "Easy Fly Tourism website on a mobile phone",
+      frame: "phone",
+    },
+    seo: {
+      title: "Easy Fly Tourism | Travel Agency Website Case Study, Dubai",
+      description:
+        "How Celestiq built Easy Fly Tourism's website: a responsive travel agency site for ticketing, Dubai visas and visa extensions, with form, phone and WhatsApp enquiries.",
+      keywords: ["travel agency website Dubai", "tourism website development", "visa services website", "UAE travel agency web design"],
+    },
+  },
+];
 
 /* ─────────────────────────────── Why / Process ─────────────────────────────── */
 
