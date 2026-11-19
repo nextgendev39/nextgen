@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { DeviceHeroShots } from "@/components/ui/ProjectShowcase";
 import { ArrowRight, ArrowUpRight, Boxes } from "lucide-react";
 import { Chip } from "@/components/ui/primitives";
 import { ProductLogo, TagList } from "@/components/ui/Portfolio";
@@ -69,7 +70,7 @@ export default function ProductsPage() {
 
 function ProductCard({ product: p, index }: { product: Product; index: number }) {
   const cover = p.media[0];
-  const thumbs = p.media.slice(1, 4);
+  const thumbs = p.showcase ? p.media.slice(0, 3) : p.media.slice(1, 4);
   const raw = cover.frame === "raw";
 
   return (
@@ -129,25 +130,29 @@ function ProductCard({ product: p, index }: { product: Product; index: number })
 
         <div className="lg:col-span-7">
           <Link href={`/products/${p.slug}`} tabIndex={-1} aria-hidden className="block">
-            <div className="overflow-hidden rounded-2xl border border-white/10 shadow-[0_30px_80px_-25px_var(--shade)]">
-              <div className="flex h-8 items-center gap-1.5 border-b border-white/[0.07] bg-ink-800 px-3">
-                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                <span className="ml-2 text-xs text-fg-subtle">
-                  {p.name} — {cover.label}
-                </span>
+            {p.showcase ? (
+              <DeviceHeroShots desktop={p.showcase.desktop} mobile={p.showcase.mobile} website={p.website} priority={false} sizes="(min-width: 1024px) 55vw, 100vw" />
+            ) : (
+              <div className="overflow-hidden rounded-2xl border border-white/10 shadow-[0_30px_80px_-25px_var(--shade)]">
+                <div className="flex h-8 items-center gap-1.5 border-b border-white/[0.07] bg-ink-800 px-3">
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  <span className="ml-2 text-xs text-fg-subtle">
+                    {p.name} — {cover.label}
+                  </span>
+                </div>
+                <div className={`relative aspect-[16/10] overflow-hidden ${raw ? "bg-[#fbf3ea]" : "bg-ink-900"}`}>
+                  <Image
+                    src={cover.src}
+                    alt={cover.alt}
+                    fill
+                    sizes="(min-width: 1024px) 55vw, 100vw"
+                    className={`transition-transform duration-700 group-hover:scale-[1.02] ${raw ? "object-contain p-3" : "object-cover object-top"}`}
+                  />
+                </div>
               </div>
-              <div className={`relative aspect-[16/10] overflow-hidden ${raw ? "bg-[#fbf3ea]" : "bg-ink-900"}`}>
-                <Image
-                  src={cover.src}
-                  alt={cover.alt}
-                  fill
-                  sizes="(min-width: 1024px) 55vw, 100vw"
-                  className={`transition-transform duration-700 group-hover:scale-[1.02] ${raw ? "object-contain p-3" : "object-cover object-top"}`}
-                />
-              </div>
-            </div>
+              )}
           </Link>
 
           <ul className="mt-4 grid grid-cols-3 gap-3" aria-label={`More ${p.name} screens`}>

@@ -1,7 +1,7 @@
 /**
  * Site content. Product media below are real captures:
  *  - Autonexa: screenshots from the Autonexa app (autonexa/public/landing).
- *  - Flowza: frames from the official Flowza app-flow video.
+ *  - Flowza: screenshots of the Flowza clinic dashboard (app /dashboard).
  *  - BuildPilot: captures of the BuildPilot app's public pages (builtpilot-web).
  *
  * To add a product, append an entry below. Every list, card,
@@ -349,6 +349,8 @@ export type Product = {
   mobile?: Media;
   /** Public product URL, when one exists */
   website?: string;
+  /** Captures of the product's public website (1920×1200 desktop + 780×1688 phone), shown as the cover */
+  showcase?: { desktop: Media; mobile: Media };
   /** Extra modules that exist in the product but have no screenshots yet */
   modules?: { title: string; icon?: "clinic" | "layers"; items: string[] }[];
   /** Product-specific search metadata (kept separate from company keywords) */
@@ -372,6 +374,10 @@ export const products: Product[] = [
     accent: { from: "#E5B85C", to: "#B9862F" },
     industries: ["Car showrooms", "Dealer groups", "Used-car traders"],
     website: "https://autonexa-ten.vercel.app",
+    showcase: {
+      desktop: { src: "/products/autonexa/site-desktop.webp", width: 1920, height: 1200, label: "Website", alt: "Autonexa website on desktop: run your whole car dealership from one screen, with the sales dashboard below", frame: "desktop" },
+      mobile: { src: "/products/autonexa/site-mobile.webp", width: 780, height: 1688, label: "Mobile", alt: "Autonexa website on a mobile phone", frame: "phone" },
+    },
     seo: {
       title: "Autonexa | Car Showroom & Dealer Management Software",
       description:
@@ -411,6 +417,10 @@ export const products: Product[] = [
     accent: { from: "#4C5BF5", to: "#19B8C9" },
     industries: ["Restaurants", "Clinics", "Hospitals", "Service businesses"],
     website: "https://flowza-restaurant.vercel.app",
+    showcase: {
+      desktop: { src: "/products/flowza/site-desktop.webp", width: 1920, height: 1200, label: "Website", alt: "Flowza website on desktop: One Platform. Every Queue. Better Experiences, with the live queue dashboard", frame: "desktop" },
+      mobile: { src: "/products/flowza/site-mobile.webp", width: 780, height: 1688, label: "Mobile", alt: "Flowza website on a mobile phone", frame: "phone" },
+    },
     seo: {
       title: "Flowza | Queue Management System for Restaurants & Clinics",
       description:
@@ -434,12 +444,14 @@ export const products: Product[] = [
       },
     ],
     media: [
-      { src: "/products/flowza/queue.jpg", width: 960, height: 800, label: "Live queue", alt: "Flowza guest phone showing token A045 next to the host's live queue screen", frame: "raw" },
-      { src: "/products/flowza/display.jpg", width: 1460, height: 680, label: "Lobby display", alt: "Flowza waiting-area display showing now serving A045 and the next tokens", frame: "raw" },
-      { src: "/products/flowza/call.jpg", width: 960, height: 800, label: "Guest called", alt: "Flowza notifying a guest that their table is ready while the host queue marks them as called", frame: "raw" },
-      { src: "/products/flowza/setup.jpg", width: 1040, height: 680, label: "Setup & QR", alt: "Flowza restaurant setup form and printable QR code to join the waitlist", frame: "raw" },
-      { src: "/products/flowza/seated.jpg", width: 960, height: 800, label: "Seated", alt: "Flowza guest screen confirming they are seated while table stats update", frame: "raw" },
+      { src: "/products/flowza/app-overview.webp", width: 1920, height: 1200, label: "Dashboard", alt: "Flowza clinic dashboard with patient, appointment, waiting and consultation counts, today's schedule and doctor availability", frame: "desktop" },
+      { src: "/products/flowza/app-queue.webp", width: 1920, height: 1200, label: "Patient queue", alt: "Flowza patient queue with waiting, next-to-call, in-consultation and completed counts, department queues and the live queue", frame: "desktop" },
+      { src: "/products/flowza/app-appointments.webp", width: 1920, height: 1200, label: "Appointments", alt: "Flowza weekly appointment calendar with doctor, department, service and status filters", frame: "desktop" },
+      { src: "/products/flowza/app-customers.webp", width: 1920, height: 1200, label: "Patients", alt: "Flowza patient list with phone numbers, visit counts, last visit and created dates", frame: "desktop" },
+      { src: "/products/flowza/app-doctors.webp", width: 1920, height: 1200, label: "Doctors", alt: "Flowza doctors screen with each doctor's department, services offered and weekly schedule", frame: "desktop" },
+      { src: "/products/flowza/app-availability.webp", width: 1920, height: 1200, label: "Doctor availability", alt: "Flowza doctor availability with consultation length, bookable time slots and weekly working hours", frame: "desktop" },
     ],
+    mobile: { src: "/products/flowza/app-queue-mobile.webp", width: 780, height: 1688, label: "Mobile", alt: "Flowza patient queue on a mobile phone, with the bottom tab bar", frame: "phone" },
   },
   {
     slug: "buildpilot",
@@ -454,6 +466,10 @@ export const products: Product[] = [
     accent: { from: "#F59E0B", to: "#EA580C" },
     industries: ["Civil engineers", "Contractors", "Site teams"],
     website: "https://builtpilot-web.vercel.app",
+    showcase: {
+      desktop: { src: "/products/buildpilot/site-desktop.webp", width: 1920, height: 1200, label: "Website", alt: "BuildPilot website on desktop: run every construction project with clarity", frame: "desktop" },
+      mobile: { src: "/products/buildpilot/site-mobile.webp", width: 780, height: 1688, label: "Mobile", alt: "BuildPilot website on a mobile phone", frame: "phone" },
+    },
     seo: {
       title: "BuildPilot | Construction Management Software for Contractors",
       description:

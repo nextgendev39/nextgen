@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight, Boxes } from "lucide-react";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { ProductLogo, TagList } from "@/components/ui/Portfolio";
 import { Reveal } from "@/components/ui/Reveal";
+import { DeviceThumb } from "@/components/ui/ProjectShowcase";
 import { products, type Product } from "@/lib/content";
 
 export function Products() {
@@ -60,15 +61,19 @@ function ProductCard({ product: p }: { product: Product }) {
       />
 
       <Link href={`/products/${p.slug}`} tabIndex={-1} aria-hidden className="relative block p-3 pb-0">
-        <div className={`relative aspect-[16/10] overflow-hidden rounded-xl border border-white/[0.08] ${raw ? "bg-[#fbf3ea]" : "bg-ink-900"}`}>
-          <Image
-            src={cover.src}
-            alt=""
-            fill
-            sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
-            className={`transition-transform duration-700 group-hover:scale-[1.04] ${raw ? "object-contain p-2" : "object-cover object-top"}`}
-          />
-        </div>
+        {p.showcase ? (
+          <DeviceThumb desktop={p.showcase.desktop} mobile={p.showcase.mobile} sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw" />
+        ) : (
+          <div className={`relative aspect-[16/10] overflow-hidden rounded-xl border border-white/[0.08] ${raw ? "bg-[#fbf3ea]" : "bg-ink-900"}`}>
+            <Image
+              src={cover.src}
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
+              className={`transition-transform duration-700 group-hover:scale-[1.04] ${raw ? "object-contain p-2" : "object-cover object-top"}`}
+            />
+          </div>
+          )}
       </Link>
 
       <div className="relative flex flex-1 flex-col p-6">

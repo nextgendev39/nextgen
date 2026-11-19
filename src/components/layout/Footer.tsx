@@ -123,9 +123,6 @@ export function Footer() {
               Projects
             </Link>
           ) : null}
-          <a href={site.url} className="hover:text-white">
-            {new URL(site.url).host.replace(/^www\./, "")}
-          </a>
         </nav>
       </div>
     </footer>
