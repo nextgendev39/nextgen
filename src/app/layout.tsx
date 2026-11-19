@@ -8,6 +8,7 @@ import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { indexable, integrations, site } from "@/lib/site";
 import { Analytics } from "@/components/Analytics";
 import { ScrollManager } from "@/components/ScrollManager";
+import { BackToTop } from "@/components/BackToTop";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <Footer />
         </MotionProvider>
         <ScrollManager />
+        <BackToTop />
         <Analytics />
       </body>
     </html>
