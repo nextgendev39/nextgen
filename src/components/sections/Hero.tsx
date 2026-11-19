@@ -81,13 +81,13 @@ export function Hero() {
             className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] py-1 pr-4 pl-1 text-xs text-fg-muted lg:backdrop-blur"
           >
             <span className="rounded-full bg-gradient-to-r from-electric to-violet px-2.5 py-0.5 text-[0.7rem] font-semibold text-snow">
-              NextGen Technologies
+              Celestiq Technologies
             </span>
             Software development &amp; product company
           </motion.p>
 
           <h1 id="hero-title" className="mt-7 text-[2.55rem] leading-[1.03] font-semibold sm:text-6xl lg:text-[4.1rem]">
-            <span className="sr-only">NextGen Technologies — </span>
+            <span className="sr-only">Celestiq Technologies — </span>
             {["Building Digital", "Products."].map((line, i) => (
               <span key={line} className="block overflow-hidden pb-[0.06em]">
                 <motion.span
@@ -118,7 +118,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.45, ease }}
             className="mt-7 max-w-xl text-lg leading-relaxed text-fg-muted"
           >
-            NextGen Technologies designs and engineers websites, web and mobile applications and APIs for clients — and builds its own
+            Celestiq Technologies designs and engineers websites, web and mobile applications and APIs for clients — and builds its own
             SaaS products, Autonexa, Flowza and BuildPilot.
           </motion.p>
 

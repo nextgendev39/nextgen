@@ -1,4 +1,4 @@
-/** Technologies used across NextGen's own products and client work. */
+/** Technologies used across Celestiq's own products and client work. */
 const tech = [
   "Next.js",
   "React",

@@ -72,7 +72,7 @@ export function Header() {
         Skip to content
       </a>
       <div className="container-x flex h-[var(--header-h)] items-center justify-between gap-6">
-        <Link href="/#home" aria-label="NextGen Technologies — home" className="shrink-0" onClick={() => setOpen(false)}>
+        <Link href="/#home" aria-label="Celestiq Technologies — home" className="shrink-0" onClick={() => setOpen(false)}>
           <Logo animate="mount" />
         </Link>
 

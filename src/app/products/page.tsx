@@ -13,7 +13,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Software products built, owned and operated by NextGen Technologies — Autonexa for automotive businesses, Flowza for queue management and BuildPilot for construction teams.",
+    "Software products built, owned and operated by Celestiq Technologies — Autonexa for automotive businesses, Flowza for queue management and BuildPilot for construction teams.",
   alternates: { canonical: "/products" },
   openGraph: { title: `Products · ${site.name}`, url: "/products" },
 };
@@ -42,7 +42,7 @@ export default function ProductsPage() {
             Software we <span className="text-gradient">build, own and run.</span>
           </>
         }
-        intro="NextGen Technologies designs, engineers and operates its own SaaS platforms. Each one solves a real operational problem for a specific industry."
+        intro="Celestiq Technologies designs, engineers and operates its own SaaS platforms. Each one solves a real operational problem for a specific industry."
         count={`${String(products.length).padStart(2, "0")} products`}
       />
 
@@ -93,7 +93,7 @@ function ProductCard({ product: p, index }: { product: Product; index: number })
         <div className="flex flex-col lg:col-span-5">
           <div className="flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-electric to-violet px-3 py-1 text-[0.7rem] font-semibold tracking-wide text-snow uppercase">
-              <Boxes className="h-3.5 w-3.5" aria-hidden /> NextGen Product
+              <Boxes className="h-3.5 w-3.5" aria-hidden /> Celestiq Product
             </span>
             <span className="font-display text-sm text-fg-subtle tabular-nums">0{index + 1}</span>
           </div>

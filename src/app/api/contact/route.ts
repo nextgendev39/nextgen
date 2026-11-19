@@ -50,7 +50,7 @@ function smtpConfig() {
     user: SMTP_USER,
     pass: SMTP_PASS,
     to: CONTACT_TO_EMAIL,
-    from: CONTACT_FROM_EMAIL || `NextGen Technologies Website <${SMTP_USER}>`,
+    from: CONTACT_FROM_EMAIL || `Celestiq Technologies Website <${SMTP_USER}>`,
   };
 }
 
@@ -143,7 +143,7 @@ export async function POST(req: Request) {
       company: data.company || null,
       projectType: data.projectType,
       message: data.message,
-      source: "nextgen-website",
+      source: "celestiq-website",
       submittedAt: new Date().toISOString(),
     });
     if (!result.ok) {

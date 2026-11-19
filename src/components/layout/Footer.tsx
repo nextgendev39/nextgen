@@ -15,7 +15,7 @@ export function Footer() {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-40 h-80 bg-[radial-gradient(ellipse_at_center,rgba(109,91,255,0.18),transparent_65%)]" />
       <div className="container-x relative grid gap-12 md:grid-cols-12">
         <div className="md:col-span-4">
-          <Link href="/#home" className="inline-flex" aria-label="NextGen Technologies — home">
+          <Link href="/#home" className="inline-flex" aria-label="Celestiq Technologies — home">
             <Logo />
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-fg-muted">

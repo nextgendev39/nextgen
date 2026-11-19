@@ -64,7 +64,7 @@ function reference(d: EnquiryEmailData) {
   const stamp = Number.isNaN(t.getTime()) ? d.submittedAt.replace(/\D/g, "").slice(0, 12) : t.toISOString().replace(/\D/g, "").slice(2, 12);
   let h = 0;
   for (const ch of d.email + d.submittedAt) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
-  return `NG-${stamp}-${h.toString(36).slice(-4).toUpperCase().padStart(4, "0")}`;
+  return `CQ-${stamp}-${h.toString(36).slice(-4).toUpperCase().padStart(4, "0")}`;
 }
 
 function initials(name: string) {

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { LogoMark } from "@/components/brand/Logo";
 
-/** Oversized animated NextGen wordmark that rises and draws in as the footer scrolls into view. */
+/** Oversized animated Celestiq wordmark that rises and draws in as the footer scrolls into view. */
 export function FooterWordmark() {
   return (
     <div aria-hidden className="container-x relative mt-16 overflow-hidden select-none">
@@ -16,7 +16,7 @@ export function FooterWordmark() {
       >
         <LogoMark animate="inView" className="h-[13vw] max-h-48 w-[13vw] max-w-48 shrink-0" title="" />
         <span className="text-gradient text-gradient-animated pb-[0.06em] font-display text-[17vw] leading-[0.9] font-semibold tracking-[-0.06em] xl:text-[15rem]">
-          NextGen
+          Celestiq
         </span>
       </motion.div>
     </div>
