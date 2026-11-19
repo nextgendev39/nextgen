@@ -60,6 +60,7 @@ export const nav = [
   { label: "Home", href: "/", id: "home" },
   { label: "Services", href: "/services", id: "services" },
   { label: "Products", href: "/products", id: "products" },
+  { label: "Projects", href: "/projects", id: "projects" },
   // No dedicated page: scrolls to the process section on the home page
   { label: "Our Process", href: "/#process", id: "process" },
   { label: "About", href: "/about", id: "about" },
