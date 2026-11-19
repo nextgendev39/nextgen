@@ -77,7 +77,7 @@ export function Contact() {
 
               <div aria-hidden className="mt-14 hidden items-center gap-4 lg:flex">
                 <LogoMark className="h-12 w-12" animate="inView" />
-                <span className="text-sm text-fg-subtle">Replies come from the NextGen Technologies team directly.</span>
+                <span className="text-sm text-fg-subtle">Replies come from the Celestiq Technologies team directly.</span>
               </div>
             </Reveal>
 

@@ -66,7 +66,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           <div className="mt-10 grid items-end gap-10 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-electric to-violet px-3 py-1 text-[0.7rem] font-semibold tracking-wide text-snow uppercase">
-                <Boxes className="h-3.5 w-3.5" aria-hidden /> NextGen Product · {p.category}
+                <Boxes className="h-3.5 w-3.5" aria-hidden /> Celestiq Product · {p.category}
               </span>
               <h1 className="mt-8">
                 <span className="sr-only">{p.name}</span>
@@ -180,7 +180,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           <div className="ring-gradient flex flex-col items-start gap-8 rounded-[2rem] bg-ink-850 p-8 sm:p-12 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <h2 className="text-3xl font-semibold sm:text-4xl">Interested in {p.name}?</h2>
-              <p className="mt-3 max-w-xl text-fg-muted">Talk to the NextGen Technologies team about a demo, pricing or a tailored rollout for your business.</p>
+              <p className="mt-3 max-w-xl text-fg-muted">Talk to the Celestiq Technologies team about a demo, pricing or a tailored rollout for your business.</p>
             </div>
             <div className="flex flex-wrap gap-3">
               <Link

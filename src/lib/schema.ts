@@ -13,7 +13,7 @@ export function organizationSchema() {
     alternateName: site.shortName,
     legalName: site.legalName,
     url: site.url,
-    logo: `${site.url}/brand/icon-512.png`,
+    logo: `${site.url}/celestiq/icon-512.png`,
     slogan: site.tagline,
     description: site.description,
     ...(email ? { email } : {}),

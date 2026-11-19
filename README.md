@@ -1,6 +1,6 @@
-# NextGen Technologies — company website
+# Celestiq Technologies — company website
 
-https://thenextgentech.co · *Building Digital Products. Empowering Businesses.*
+https://celestiqtech.com · *Building Digital Products. Empowering Businesses.*
 
 Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · Framer Motion
 
@@ -35,9 +35,9 @@ src/lib/contact.ts        validation shared by the form and the API route
 
 | Asset | File |
 | --- | --- |
-| Mark (light bg / dark bg / mono) | `public/brand/mark.svg`, `mark-dark.svg`, `mark-mono.svg` |
-| Logo lockup with "Technologies" descriptor (light / dark bg) | `public/brand/logo-light.svg`, `logo-dark.svg` |
-| App icon | `public/brand/app-icon.svg`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png` |
+| Mark (light bg / dark bg / mono) | `public/celestiq/mark.svg`, `mark-dark.svg`, `mark-mono.svg` |
+| Logo lockup with "Technologies" descriptor (light / dark bg) | `public/celestiq/logo-light.svg`, `logo-dark.svg` |
+| App icon | `public/celestiq/app-icon.svg`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png` |
 | Favicon / Apple icon | `src/app/icon.svg`, `src/app/apple-icon.png` |
 
 The mark is a **G enclosing an N**, with a "spark" node at the G's opening to signal forward motion.
@@ -69,7 +69,7 @@ electric/violet fills, and the `light:` / `dark:` variants for anything else.
 
 ## To finish before launch
 
-1. `NEXT_PUBLIC_SITE_URL` — defaults to `https://thenextgentech.co`; override only for previews.
+1. `NEXT_PUBLIC_SITE_URL` — defaults to `https://celestiqtech.com`; override only for previews.
 2. **Contact form delivery.** Recommended: email. Set `CONTACT_TO_EMAIL` plus `SMTP_HOST`, `SMTP_PORT`,
    `SMTP_USER` and `SMTP_PASS`. For Gmail, use an App Password from
    https://myaccount.google.com/apppasswords, not your normal password. Each enquiry arrives as an email

@@ -31,7 +31,7 @@ export function About() {
         <div>
           <SectionHeading
             id="about-title"
-            eyebrow="About NextGen Technologies"
+            eyebrow="About Celestiq Technologies"
             title={
               <>
                 Technology company. <span className="text-gradient">Product builders.</span>
@@ -40,7 +40,7 @@ export function About() {
           />
           <Reveal delay={0.1} className="mt-6 space-y-5 text-lg leading-relaxed text-fg-muted">
             <p>
-              NextGen Technologies is a software development and product company. We partner with businesses to design and build
+              Celestiq Technologies is a software development and product company. We partner with businesses to design and build
               websites, applications and integrations — software that works hard every day.
             </p>
             <p>

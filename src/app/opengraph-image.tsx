@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "NextGen Technologies — Building Digital Products. Empowering Businesses.";
+export const alt = "Celestiq Technologies — Building Digital Products. Empowering Businesses.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -35,11 +35,11 @@ export default function OpengraphImage() {
           </svg>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 52, fontWeight: 700, letterSpacing: -2, display: "flex", lineHeight: 1 }}>
-              Next<span style={{ color: "#8b7bff" }}>Gen</span>
+              Celest<span style={{ color: "#8b7bff" }}>iq</span>
             </div>
             <div style={{ fontSize: 17, fontWeight: 600, letterSpacing: 7, color: "#8a93b3", marginTop: 8 }}>TECHNOLOGIES</div>
           </div>
-          <div style={{ marginLeft: "auto", fontSize: 24, color: "#8a93b3" }}>thenextgentech.co</div>
+          <div style={{ marginLeft: "auto", fontSize: 24, color: "#8a93b3" }}>celestiqtech.com</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ fontSize: 68, fontWeight: 700, lineHeight: 1.05, letterSpacing: -2.5, maxWidth: 980 }}>

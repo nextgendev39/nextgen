@@ -1,5 +1,5 @@
 /** Lightweight cross-component signal: pre-select a project type in the contact form. */
-export const PROJECT_TYPE_EVENT = "nextgen:project-type";
+export const PROJECT_TYPE_EVENT = "celestiq:project-type";
 
 export function selectProjectType(type: string) {
   if (typeof window === "undefined") return;

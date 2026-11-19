@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   keywords: [
-    "NextGen",
-    "NextGen Technologies",
+    "Celestiq",
+    "Celestiq Technologies",
     "software development company",
     "web application development",
     "website development",

@@ -23,7 +23,7 @@ export function Products() {
           />
           <div className="max-w-sm lg:pb-2">
             <p className="text-fg-muted">
-              Beyond client work, NextGen Technologies designs and operates its own SaaS platforms.
+              Beyond client work, Celestiq Technologies designs and operates its own SaaS platforms.
             </p>
             <Link href="/products" className="group mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-electric-soft hover:text-white">
               View all products <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />

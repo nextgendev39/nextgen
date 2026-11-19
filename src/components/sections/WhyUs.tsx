@@ -23,7 +23,7 @@ export function WhyUs() {
           <div className="lg:sticky lg:top-32">
             <SectionHeading
               id="why-title"
-              eyebrow="Why NextGen"
+              eyebrow="Why Celestiq"
               title={
                 <>
                   A product company <span className="text-gradient">that builds for you.</span>

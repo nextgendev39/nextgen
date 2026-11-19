@@ -12,15 +12,15 @@ export type SocialLink = {
 
 export const site = {
   /** Full company name, used in titles, metadata and structured data */
-  name: "NextGen Technologies",
+  name: "Celestiq Technologies",
   /** Short brand name for tight UI spots (logo wordmark, badges) */
-  shortName: "NextGen",
-  legalName: "NextGen Technologies",
+  shortName: "Celestiq",
+  legalName: "Celestiq Technologies",
   tagline: "Building Digital Products. Empowering Businesses.",
   description:
-    "NextGen Technologies is a software development and product company. We design and build websites, web and mobile applications and APIs for clients, and run our own SaaS products: Autonexa, Flowza and BuildPilot.",
+    "Celestiq Technologies is a software development and product company. We design and build websites, web and mobile applications and APIs for clients, and run our own SaaS products: Autonexa, Flowza and BuildPilot.",
   /** Canonical origin. Override with NEXT_PUBLIC_SITE_URL for previews. */
-  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://thenextgentech.co").replace(/\/$/, ""),
+  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://celestiqtech.com").replace(/\/$/, ""),
   locale: "en_US",
   contact: {
     email: "",
