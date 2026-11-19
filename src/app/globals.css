@@ -148,6 +148,28 @@
     animation: var(--animate-shine);
   }
 
+  /* Footer wordmark: outlined letters with a looping solid-fill sweep. */
+  .wordmark-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px color-mix(in oklab, var(--color-white) 22%, transparent);
+  }
+  .wordmark-fill {
+    background-image: var(--gradient-text-loop);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation:
+      wordmark-sweep 7s cubic-bezier(0.65, 0, 0.35, 1) 1.6s infinite both,
+      var(--animate-shine);
+  }
+  @keyframes wordmark-sweep {
+    0%   { clip-path: inset(0 100% 0 0); }
+    45%  { clip-path: inset(0 0 0 0); }
+    55%  { clip-path: inset(0 0 0 0); }
+    100% { clip-path: inset(0 0 0 100%); }
+  }
+
   .glass {
     background: linear-gradient(180deg, color-mix(in oklab, var(--color-white) 6%, transparent), color-mix(in oklab, var(--color-white) 2%, transparent));
     border: 1px solid color-mix(in oklab, var(--color-white) 8%, transparent);
