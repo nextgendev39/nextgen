@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { TechMarquee } from "@/components/sections/TechMarquee";
 import { Services } from "@/components/sections/Services";
 import { Products } from "@/components/sections/Products";
+import { Walkthroughs } from "@/components/sections/Walkthroughs";
 import { RecentProjects } from "@/components/sections/RecentProjects";
 import { WhyUs } from "@/components/sections/WhyUs";
 import { Process } from "@/components/sections/Process";
@@ -38,6 +39,7 @@ export default function HomePage() {
       <TechMarquee />
       <Services />
       <Products />
+      <Walkthroughs />
       <RecentProjects />
       <WhyUs />
       <Process />

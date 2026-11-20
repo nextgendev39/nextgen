@@ -66,6 +66,11 @@ electric/violet fills, and the `light:` / `dark:` variants for anything else.
   patients, doctors, availability, mobile queue); logo from `flowza-restaurant/public/brand`. The home hero
   still uses two frames from `Flowza-Restaurant-App-Flow.mp4` (`queue.jpg`, `display.jpg`). Public URL:
   https://flowza.celestiqtech.com.
+- **Walkthrough videos** (1920×1080 MP4) live next to each product's screenshots and are listed under
+  `walkthroughs` in `src/lib/content.ts`. Autonexa has one tour with a voiceover. Flowza has three: the full
+  restaurant + clinic flow, restaurants only and clinics only. BuildPilot has one product tour. The first video of each product appears on the
+  home page, and all of them appear on the product page. Each `walkthrough-*poster.jpg` is the video's title card at 0:03.
+  The MP4 only downloads after the visitor presses play.
 - Each product also has `site-desktop.webp` / `site-mobile.webp` captures of its public website, shown as the
   browser + phone cover (`showcase` in `src/lib/content.ts`).
 - **BuildPilot** — captured from the BuildPilot app (`builtpilot-web`) running locally: home page, platform,

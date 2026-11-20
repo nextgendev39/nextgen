@@ -7,6 +7,7 @@ import { ArrowRight, ArrowUpRight, Boxes, Check, Layers, Stethoscope } from "luc
 import { BrowserFrame, Chip, PhoneFrame } from "@/components/ui/primitives";
 import { ProductLogo, TagList } from "@/components/ui/Portfolio";
 import { Reveal } from "@/components/ui/Reveal";
+import { VideoWalkthrough } from "@/components/ui/VideoWalkthrough";
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { products, services } from "@/lib/content";
@@ -109,6 +110,24 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           </Reveal>
         </div>
       </section>
+
+      {p.walkthroughs?.length ? (
+        <section aria-labelledby="walkthrough-title" className="py-20">
+          <div className="container-x">
+            <h2 id="walkthrough-title" className="text-3xl font-semibold sm:text-4xl">
+              Watch the {p.name} walkthrough
+            </h2>
+            <p className="mt-3 max-w-2xl text-fg-muted">
+              {p.walkthroughs.length > 1
+                ? `Recorded tours of ${p.name}. Pick the flow that matches your business.`
+                : `A recorded tour of ${p.name}, from the first screen to the finished task.`}
+            </p>
+            <Reveal className="mt-10">
+              <VideoWalkthrough videos={p.walkthroughs.map((w) => ({ ...w, product: p.name }))} />
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
 
       <section aria-labelledby="features-title" className="py-20">
         <div className="container-x">
