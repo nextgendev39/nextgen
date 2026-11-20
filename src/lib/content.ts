@@ -22,6 +22,20 @@ export type Media = {
   frame?: "desktop" | "phone" | "raw" | "plain";
 };
 
+/** A recorded product walkthrough (1920×1080 MP4 in /public/products/<slug>/) */
+export type Walkthrough = {
+  src: string;
+  /** Title-card frame shown until the visitor presses play */
+  poster: string;
+  /** Short tab label, e.g. "Restaurants" */
+  label: string;
+  title: string;
+  /** Running time as m:ss */
+  duration: string;
+  /** Has a spoken voiceover (otherwise music/silent) */
+  voiceover?: boolean;
+};
+
 /** A wordmark image with optional variant for light backgrounds. */
 export type Wordmark = {
   /** Version for dark backgrounds (default theme) */
@@ -351,6 +365,8 @@ export type Product = {
   website?: string;
   /** Captures of the product's public website (1920×1200 desktop + 780×1688 phone), shown as the cover */
   showcase?: { desktop: Media; mobile: Media };
+  /** Video walkthroughs; the first one is featured on the home page */
+  walkthroughs?: Walkthrough[];
   /** Extra modules that exist in the product but have no screenshots yet */
   modules?: { title: string; icon?: "clinic" | "layers"; items: string[] }[];
   /** Product-specific search metadata (kept separate from company keywords) */
@@ -378,6 +394,16 @@ export const products: Product[] = [
       desktop: { src: "/products/autonexa/site-desktop.webp", width: 1920, height: 1200, label: "Website", alt: "Autonexa website on desktop: run your whole car dealership from one screen, with the sales dashboard below", frame: "desktop" },
       mobile: { src: "/products/autonexa/site-mobile.webp", width: 780, height: 1688, label: "Mobile", alt: "Autonexa website on a mobile phone", frame: "phone" },
     },
+    walkthroughs: [
+      {
+        src: "/products/autonexa/AutoNexa_Product_Walkthrough_Voiceover.mp4",
+        poster: "/products/autonexa/walkthrough-poster.jpg",
+        label: "Product tour",
+        title: "Autonexa product walkthrough",
+        duration: "2:43",
+        voiceover: true,
+      },
+    ],
     seo: {
       title: "Autonexa | Car Showroom & Dealer Management Software",
       description:
@@ -421,6 +447,29 @@ export const products: Product[] = [
       desktop: { src: "/products/flowza/site-desktop.webp", width: 1920, height: 1200, label: "Website", alt: "Flowza website on desktop: One Platform. Every Queue. Better Experiences, with the live queue dashboard", frame: "desktop" },
       mobile: { src: "/products/flowza/site-mobile.webp", width: 780, height: 1688, label: "Mobile", alt: "Flowza website on a mobile phone", frame: "phone" },
     },
+    walkthroughs: [
+      {
+        src: "/products/flowza/Flowza-Restaurant-and-Clinic-Full-Flow.mp4",
+        poster: "/products/flowza/walkthrough-full-poster.jpg",
+        label: "Restaurants & clinics",
+        title: "Flowza for restaurants and clinics: the full flow",
+        duration: "3:05",
+      },
+      {
+        src: "/products/flowza/Flowza-Restaurant-Full-Flow.mp4",
+        poster: "/products/flowza/walkthrough-restaurant-poster.jpg",
+        label: "Restaurants",
+        title: "Flowza for restaurants: waiting list, tables and bookings",
+        duration: "1:25",
+      },
+      {
+        src: "/products/flowza/Flowza-Clinic-Full-Flow.mp4",
+        poster: "/products/flowza/walkthrough-clinic-poster.jpg",
+        label: "Clinics",
+        title: "Flowza for clinics: appointments, walk-ins and patient queues",
+        duration: "1:53",
+      },
+    ],
     seo: {
       title: "Flowza | Queue Management System for Restaurants & Clinics",
       description:
@@ -470,6 +519,15 @@ export const products: Product[] = [
       desktop: { src: "/products/buildpilot/site-desktop.webp", width: 1920, height: 1200, label: "Website", alt: "BuildPilot website on desktop: run every construction project with clarity", frame: "desktop" },
       mobile: { src: "/products/buildpilot/site-mobile.webp", width: 780, height: 1688, label: "Mobile", alt: "BuildPilot website on a mobile phone", frame: "phone" },
     },
+    walkthroughs: [
+      {
+        src: "/products/buildpilot/BuildPilot_Walkthrough.mp4",
+        poster: "/products/buildpilot/walkthrough-poster.jpg",
+        label: "Product tour",
+        title: "BuildPilot product walkthrough",
+        duration: "3:13",
+      },
+    ],
     seo: {
       title: "BuildPilot | Construction Management Software for Contractors",
       description:
