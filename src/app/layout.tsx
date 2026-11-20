@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { indexable, integrations, site } from "@/lib/site";
 import { Analytics } from "@/components/Analytics";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import { ScrollManager } from "@/components/ScrollManager";
 import { BackToTop } from "@/components/BackToTop";
 import "./globals.css";
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ScrollManager />
         <BackToTop />
         <Analytics />
+        <VercelAnalytics />
       </body>
     </html>
   );

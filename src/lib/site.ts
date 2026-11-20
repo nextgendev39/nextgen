@@ -48,11 +48,14 @@ export const indexable =
 /**
  * Search-engine verification and analytics IDs. All optional and read from
  * the environment at build time; nothing loads or renders while a value is empty.
+ * The Google Search Console token is public (it is printed in every page's
+ * <head>), so the property's token is the default; the env var overrides it.
  */
 export const integrations = {
-  googleSiteVerification: process.env.GOOGLE_SITE_VERIFICATION?.trim() || "",
+  googleSiteVerification: process.env.GOOGLE_SITE_VERIFICATION?.trim() || "F-ESlcyzx9w1-AG1FdrE1NhXJkPZ6KewIqAw1lXDPMQ",
   bingSiteVerification: process.env.BING_SITE_VERIFICATION?.trim() || "",
-  gtmId: process.env.NEXT_PUBLIC_GTM_ID?.trim() || "",
+  /** Google Tag Manager container (GA4 is configured inside it) */
+  gtmId: process.env.NEXT_PUBLIC_GTM_ID?.trim() || "GTM-KDKQ3J3G",
   gaId: process.env.NEXT_PUBLIC_GA_ID?.trim() || "",
 };
 
